@@ -1,5 +1,7 @@
 public class Field {
+    //public  int m = 4;
     public  int m = 163;
+    //public  int[] polynom = {4,1,0};
     public  int[] polynom = {163,7,6,3,0};
 
     public Field() {
