@@ -1,5 +1,6 @@
 package eliptic_curve;
 
+import field.Field;
 import field.FieldElement;
 
 import java.math.BigInteger;
@@ -8,9 +9,9 @@ public class Point {
     private FieldElement x;
     private FieldElement y;
 
-    public Point() {
-        x = new FieldElement();
-        y = new FieldElement();
+    public Point(Field field) {
+        x = new FieldElement(field.m);
+        y = new FieldElement(field.m);
     }
 
     public Point(FieldElement x, FieldElement y) {
@@ -18,12 +19,12 @@ public class Point {
         this.y = y;
     }
 
-    public Point(BigInteger x, BigInteger y){
-        this.x = new FieldElement(x);
-        this.y = new FieldElement(y);
+    public Point(BigInteger x, BigInteger y,Field field){
+        this.x = new FieldElement(x,field.m);
+        this.y = new FieldElement(y,field.m);
     }
-    public static Point getZeroPoint(){
-        return new Point();
+    public static Point getZeroPoint(Field field){
+        return new Point(field);
     }
 
     public FieldElement getX() {
@@ -50,8 +51,8 @@ public class Point {
                 '}';
     }
 
-    public boolean isNull() {
-        Point point = new Point();
-        return point.getX().cmp(x)==0&&point.getY().cmp(y)==0;
+    public boolean isNull(Field field) {
+        Point point = new Point(field);
+        return field.cmp(point.getX(),x)==0&&field.cmp(point.getY(),y)==0;
     }
 }
